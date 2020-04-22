@@ -10,4 +10,30 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
   end
-end
+  
+  get '/articles/new' do
+    erb :new
+  end
+  
+  post '/articles' do
+    Arcticle.create(params)
+    erb :new
+  end 
+  
+  get '/articles' do 
+    erb :index
+  end
+  
+  get '/articles' do
+    @articles = Article.all
+    erb :index
+  end
+  
+  get '/articles/:id' do
+    @article = Article.find_by_id(params["id"])
+    erb :show
+  end
+  
+end 
+
+
